@@ -16,6 +16,41 @@ Navigate to a clojurescript file and start a figwheel REPL with `cider-jack-in-c
 
 ### Run application:
 
+#### Set up database
+
+I used Postgres. On a Mac, it's easy with the Postgres app: https://postgresapp.com/. On other
+platforms, you'll need to find a different solution.
+
+Once Postgres is installed, create a new database cluster:
+```
+initdb pg
+```
+You should only have to do that once.
+
+Then, start Postgres:
+```
+postgres -D pg &
+```
+
+Initialize Git submodules:
+```
+git submodule update --init
+```
+
+Run database migrations and seed the database:
+```
+lein deps
+lein migratus migrate
+lein run -m ad-fontes.db.seed
+```
+
+If you don't want the database URL specified in project.clj in the `:migratus` section,
+you can run:
+```
+DATABASE_URL=<some URL> lein migratus migrate
+```
+
+Run server:
 ```
 lein clean
 lein figwheel dev
@@ -64,3 +99,14 @@ To compile clojurescript to javascript:
 lein clean
 lein cljsbuild once min
 ```
+
+
+## Licenses
+Scripture quotations marked SBLGNT are from the SBL Greek New Testament.
+Copyright © 2010 [Society of Biblical Literature](http://www.sbl-site.org/)
+and [Logos Bible Software](http://www.logos.com/).
+
+
+Greek morphological parsing and lemmatization is made available under a
+[CC-BY-SA License](https://creativecommons.org/licenses/by-sa/3.0/).
+No changes have been made.

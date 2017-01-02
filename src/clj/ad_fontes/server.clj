@@ -1,7 +1,8 @@
 (ns ad-fontes.server
-  (:require [ad-fontes.handler :refer [handler]]
-            [config.core :refer [env]]
-            [ring.adapter.jetty :refer [run-jetty]])
+  (:require
+   [config.core :refer [env]]
+   [ring.adapter.jetty :refer [run-jetty]]
+   [ad-fontes.handler :refer [handler]])
   (:gen-class))
 
  (defn -main [& args]

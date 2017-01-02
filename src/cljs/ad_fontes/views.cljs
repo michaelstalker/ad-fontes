@@ -1,5 +1,6 @@
 (ns ad-fontes.views
-    (:require [re-frame.core :as re-frame]))
+  (:require
+   [re-frame.core :as re-frame]))
 
 (defn text-panel
   []

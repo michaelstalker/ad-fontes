@@ -4,3 +4,7 @@
 /resources/public/js/compiled
 out
 .projectile
+/config/prod/config.edn
+/pg
+/resources/submodules
+.nrepl-port

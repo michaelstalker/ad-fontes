@@ -15,9 +15,8 @@
     (enable-re-frisk!)
     (println "dev mode")))
 
-;; Replace this with cljs-ajax or cljs-http code
-;; Ask about those in Slack
-(defroute "/:book/:chapter"
+;; TODO: Replace this with cljs-ajax or cljs-http code
+(defn dispatch-verses
   [book chapter]
   (let [promise (js/fetch (str "/api/" book "/" chapter))]
     (.then promise (fn [res]
@@ -25,7 +24,11 @@
                        (.then promise2 (fn [text]
                                          (re-frame/dispatch [:update-text text]))))))))
 
-(defroute "/" [] (re-frame/dispatch [:udpate-text {:book "matthew" :chapter 1}]))
+(defroute "/:book/:chapter"
+  [book chapter]
+  (dispatch-verses book chapter))
+
+(defroute "/" [] (dispatch-verses "Matthew" 1))
 
 (defn mount-root []
   (re-frame/clear-subscription-cache!)
@@ -35,5 +38,5 @@
 (defn ^:export init []
   (re-frame/dispatch-sync [:initialize-db])
   (dev-setup)
-  (secretary/dispatch! js/window.location.pathname) ;; Is this bad form?
+  (secretary/dispatch! js/window.location.pathname)
   (mount-root))

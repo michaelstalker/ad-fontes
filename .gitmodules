@@ -1,0 +1,6 @@
+[submodule "checkouts/sblgnt"]
+	path = resources/submodules/sblgnt
+	url = git@github.com:morphgnt/sblgnt.git
+[submodule "resources/submodules/sblgnt"]
+	path = resources/submodules/sblgnt
+	url = git@github.com:morphgnt/sblgnt.git

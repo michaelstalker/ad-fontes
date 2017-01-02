@@ -1,6 +1,7 @@
 (ns ad-fontes.events
-    (:require [re-frame.core :as re-frame]
-              [ad-fontes.db :as db]))
+  (:require
+   [re-frame.core :as re-frame]
+   [ad-fontes.db :as db]))
 
 (re-frame/reg-event-db
  :initialize-db
