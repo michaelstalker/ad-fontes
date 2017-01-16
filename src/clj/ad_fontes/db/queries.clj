@@ -12,7 +12,7 @@
                      FROM verses
                      INNER JOIN books
                      ON verses.book_id = books.id
-                     WHERE books.title = ?
+                     WHERE books.name = ?
                      AND verses.chapter = ?
                      ORDER BY verses.id"
                     (s/capitalize book)
