@@ -1,6 +1,7 @@
 (ns ad-fontes.db.new-testament-verses
   (:require
    [clojure.java.io :refer [reader]]
+   [clojure.tools.logging :as log]
    [clojure.java.jdbc :as sql]
    [config.core :refer [env]]))
 
@@ -94,11 +95,6 @@
 (def gender (parsing-code-fn genders 6))
 (def degree (parsing-code-fn degrees 7))
 
-(defn lines
-  [col]
-
-  )
-
 (defn morphology
   [string]
   (let [pieces (clojure.string/split string #" ")
@@ -126,10 +122,13 @@
   (let [directory (clojure.java.io/file "resources/submodules/sblgnt")
         all-files (file-seq directory)
         chapter-files (filter #(clojure.string/ends-with? (.getPath %) ".txt") all-files)]
+    (log/info "Adding New Testament verses into the database...")
     (doseq [file chapter-files]
-      (println (.getPath file))
+      (log/info "  Adding verses from " (.getPath file) " ...")
       (with-open [rdr (reader file)]
         (let [lines (line-seq rdr)]
           (sql/insert-multi! (:database-url env)
                              :verses
-                             (map morphology lines)))))))
+                             (map morphology lines))
+          (log/info "  Done!\n"))))
+    (log/info "Done adding New Testament verses!\n")))

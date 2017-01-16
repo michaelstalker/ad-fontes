@@ -1,7 +1,5 @@
 # ad-fontes
 
-A [re-frame](https://github.com/Day8/re-frame) application designed to ... well, that part is up to you.
-
 ## Development Mode
 
 ### Start Cider from Emacs:
@@ -21,9 +19,10 @@ Navigate to a clojurescript file and start a figwheel REPL with `cider-jack-in-c
 I used Postgres. On a Mac, it's easy with the Postgres app: https://postgresapp.com/. On other
 platforms, you'll need to find a different solution.
 
-Once Postgres is installed, create a new database cluster:
+Once Postgres is installed, create a new database cluster and a database:
 ```
 initdb pg
+createdb ad_fontes
 ```
 You should only have to do that once.
 
@@ -40,7 +39,6 @@ git submodule update --init
 Run database migrations and seed the database:
 ```
 lein deps
-lein migratus migrate
 lein run -m ad-fontes.db.seed
 ```
 
