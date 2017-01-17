@@ -9,6 +9,8 @@
                  [compojure "1.5.0"]
                  [yogthos/config "0.8"]
                  [migratus "0.8.32"]
+                 [com.cognitect/transit-clj "0.8.297"]
+                 [com.cognitect/transit-cljs "0.8.239"]
                  [org.slf4j/slf4j-log4j12 "1.7.9"] ;; To avoid silent migratus failures.
                  [ring "1.4.0"]
                  [secretary "1.2.3"]]

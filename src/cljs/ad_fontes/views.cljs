@@ -1,11 +1,20 @@
 (ns ad-fontes.views
   (:require
-   [re-frame.core :as re-frame]))
+   [clojure.string :as s]
+   [re-frame.core :as re-frame]
+   [cognitect.transit :as t]))
 
 (defn text-panel
   []
-  (let [text (re-frame/subscribe [:text])]
-    [:div @text]))
+  (let [reader (t/reader :json)
+        payload (re-frame/subscribe [:text])
+        verses (:verses (t/read reader @payload))
+        verses (into (sorted-map) verses)]
+    [:ol
+     (for [[verse words] verses]
+       ^{:key (-> words first :id)} [:li
+                                     [:span verse]
+                                     [:span (s/join " " (map :word words))]])]))
 
 (defn main-panel
   []
