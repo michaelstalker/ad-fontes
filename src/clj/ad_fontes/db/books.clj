@@ -29,7 +29,7 @@
                              {:id 19 :name "Psalms"}
                              {:id 20 :name "Proverbs"}
                              {:id 21 :name "Ecclesiastes"}
-                             {:id 22 :name "Song of Solomon"}
+                             {:id 22 :name "Song Of Solomon"}
                              {:id 23 :name "Isaiah"}
                              {:id 24 :name "Jeremiah"}
                              {:id 25 :name "Lamentations"}

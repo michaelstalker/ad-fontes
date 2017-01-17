@@ -19,7 +19,14 @@
                            WHERE books.name = ?
                            AND verses.chapter = ?
                            ORDER BY verses.id"
-                          (s/capitalize book)
+                          (normalized-book book)
                           (Integer. chapter)])]
     (t/write writer {:verses (group-by :verse words)})
     (.toString out)))
+
+(defn normalized-book
+  [book]
+  (let [words (s/split book #"-")]
+    (->> words
+         (map s/capitalize)
+         (s/join " "))))
