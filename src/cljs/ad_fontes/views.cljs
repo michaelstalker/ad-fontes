@@ -10,10 +10,10 @@
         payload (re-frame/subscribe [:text])
         verses (:verses (t/read reader @payload))
         verses (into (sorted-map) verses)]
-    [:ol
+    [:ol.verses
      (for [[verse words] verses]
-       ^{:key (-> words first :id)} [:li
-                                     [:span verse]
+       ^{:key (-> words first :id)} [:li.verse
+                                     [:span.verse-number verse]
                                      [:span (s/join " " (map :word words))]])]))
 
 (defn main-panel
