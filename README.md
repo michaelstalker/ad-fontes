@@ -24,7 +24,7 @@ Once Postgres is installed, create a new database cluster and a database:
 initdb pg
 createdb ad_fontes
 ```
-You should only have to do that once.
+You should only have to do that once. Commands on Linux may be differnt than what I listed above.
 
 Then, start Postgres:
 ```
@@ -39,6 +39,7 @@ git submodule update --init
 Run database migrations and seed the database:
 ```
 lein deps
+lein migratus migrate
 lein run -m ad-fontes.db.seed
 ```
 

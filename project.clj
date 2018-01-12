@@ -1,8 +1,8 @@
 (defproject ad-fontes "0.1.0-SNAPSHOT"
-  :dependencies [[org.clojure/clojure "1.8.0"]
-                 [org.clojure/clojurescript "1.9.229"]
-                 [org.clojure/java.jdbc "0.6.1"]
-                 [org.postgresql/postgresql "9.4-1201-jdbc41"]
+  :dependencies [[org.clojure/clojure "1.9.0"]
+                 [org.clojure/clojurescript "1.9.946"]
+                 [org.clojure/java.jdbc "0.7.5"]
+                 [org.postgresql/postgresql "9.4-1201-jdbc41"] ;; upgrade
                  [reagent "0.6.0"]
                  [re-frame "0.9.1"]
                  [re-frisk "0.3.2"]
@@ -19,6 +19,8 @@
             [migratus-lein "0.4.3"]]
 
   :min-lein-version "2.5.3"
+
+  :jvm-opts ["--add-modules" "java.xml.bind"]
 
   :source-paths ["src/clj"]
 
