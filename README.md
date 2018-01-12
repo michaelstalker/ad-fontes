@@ -24,7 +24,7 @@ Once Postgres is installed, create a new database cluster and a database:
 initdb pg
 createdb ad_fontes
 ```
-You should only have to do that once.
+You should only have to do that once. Commands on Linux may be differnt than what I listed above.
 
 Then, start Postgres:
 ```
@@ -39,6 +39,7 @@ git submodule update --init
 Run database migrations and seed the database:
 ```
 lein deps
+lein migratus migrate
 lein run -m ad-fontes.db.seed
 ```
 
@@ -79,7 +80,12 @@ That should compile the clojurescript code first, and then create the standalone
 When you run the jar you can set the port the ring server will use by setting the environment variable PORT.
 If it's not set, it will run on port 3000 by default.
 
-To deploy to heroku, first create your app:
+To deploy to Heroku, first install the Heroku command-line executable.
+```
+
+```
+
+Then, create your app:
 
 ```
 heroku create
