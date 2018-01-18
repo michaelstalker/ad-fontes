@@ -3,12 +3,11 @@
                  [org.clojure/clojurescript "1.9.946"]
                  [org.clojure/java.jdbc "0.7.5"]
                  [org.postgresql/postgresql "9.4-1201-jdbc41"] ;; upgrade
-                 [reagent "0.6.0"]
-                 [re-frame "0.9.1"]
+                 [re-frame "0.10.2"]
                  [re-frisk "0.3.2"]
                  [compojure "1.5.0"]
                  [yogthos/config "0.8"]
-                 [migratus "0.8.32"]
+                 [migratus "1.0.3"]
                  [com.cognitect/transit-clj "0.8.297"]
                  [com.cognitect/transit-cljs "0.8.239"]
                  [org.slf4j/slf4j-log4j12 "1.7.9"] ;; To avoid silent migratus failures.
@@ -16,7 +15,7 @@
                  [secretary "1.2.3"]]
 
   :plugins [[lein-cljsbuild "1.1.4"]
-            [migratus-lein "0.4.3"]]
+            [migratus-lein "0.5.4"]]
 
   :min-lein-version "2.5.3"
 
@@ -40,11 +39,11 @@
   :profiles
   {:dev
    {:dependencies [[binaryage/devtools "0.8.2"]
-                   [figwheel-sidecar "0.5.7"]
+                   [figwheel-sidecar "0.5.14"]
                    [com.cemerick/piggieback "0.2.1"]
                    [lein-doo "0.1.7"]]
 
-    :plugins      [[lein-figwheel "0.5.7"]
+    :plugins      [[lein-figwheel "0.5.14"]
                    [lein-doo "0.1.7"]]
     :resource-paths ["config/dev"]}
 
