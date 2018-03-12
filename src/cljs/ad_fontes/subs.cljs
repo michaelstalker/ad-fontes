@@ -13,3 +13,13 @@
  :text
  (fn [db]
    (:text db)))
+
+(re-frame/reg-sub
+ :chapter
+ (fn [db]
+   (:chapter db)))
+
+(re-frame/reg-sub
+ :book
+ (fn [db]
+   (:book db)))

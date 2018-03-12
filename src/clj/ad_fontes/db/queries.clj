@@ -7,13 +7,6 @@
    [config.core :refer [env]])
   (:import [java.io ByteArrayOutputStream]))
 
-(defn normalized-book
-  [book]
-  (let [words (s/split book #"-")]
-    (->> words
-         (map s/capitalize)
-         (s/join " "))))
-
 (defn verses
   [book chapter]
   (let [out (ByteArrayOutputStream. 4096)
@@ -26,7 +19,7 @@
                            WHERE books.name = ?
                            AND verses.chapter = ?
                            ORDER BY verses.id"
-                          (normalized-book book)
+                          book
                           (Integer. chapter)])]
-    (t/write writer {:verses (group-by :verse words)})
+    (t/write writer  (group-by :verse words))
     (.toString out)))

@@ -1,5 +1,6 @@
 (ns ad-fontes.core
   (:require
+   [clojure.string :as s]
    [reagent.core :as reagent]
    [re-frame.core :as re-frame]
    [re-frisk.core :refer [enable-re-frisk!]]
@@ -15,8 +16,15 @@
     (enable-re-frisk!)
     (println "dev mode")))
 
+(defn normalized-book
+  [book]
+  (let [words (s/split book #"-")]
+    (->> words
+         (map s/capitalize)
+         (s/join " "))))
+
 ;; TODO: Replace this with cljs-ajax or cljs-http code
-(defn dispatch-verses
+(defn update-verses
   [book chapter]
   (let [promise (js/fetch (str "/api/" book "/" chapter))]
     (.then promise (fn [res]
@@ -24,11 +32,26 @@
                        (.then promise2 (fn [text]
                                          (re-frame/dispatch [:update-text text]))))))))
 
+(defn update-chapter
+  [chapter]
+  (re-frame/dispatch [:update-chapter chapter]))
+
+(defn update-book
+  [book]
+  (re-frame/dispatch [:update-book book]))
+
 (defroute "/:book/:chapter"
   [book chapter]
-  (dispatch-verses book chapter))
+  (let [book (normalized-book book)]
+    (update-verses book chapter)
+    (update-book book)
+    (update-chapter chapter)))
 
-(defroute "/" [] (dispatch-verses "Matthew" 1))
+(defroute "/"
+  []
+  (update-verses "Matthew" 1)
+  (update-book "Matthew")
+  (update-chapter 1))
 
 (defn mount-root []
   (re-frame/clear-subscription-cache!)
