@@ -3,17 +3,15 @@
    [clojure.string :as s]
    [reagent.core :as reagent]
    [re-frame.core :as re-frame]
-   [re-frisk.core :refer [enable-re-frisk!]]
    [secretary.core :as secretary :refer-macros [defroute]]
    [ad-fontes.events]
    [ad-fontes.subs]
-   [ad-fontes.views :as views]
+   [ad-fontes.views.main :as views]
    [ad-fontes.config :as config]))
 
 (defn dev-setup []
   (when config/debug?
     (enable-console-print!)
-    (enable-re-frisk!)
     (println "dev mode")))
 
 (defn normalized-book

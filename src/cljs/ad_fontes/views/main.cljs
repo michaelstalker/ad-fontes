@@ -1,4 +1,4 @@
-(ns ad-fontes.views
+(ns ad-fontes.views.main
   (:require
    [clojure.string :as s]
    [re-frame.core :as re-frame]
