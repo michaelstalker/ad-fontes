@@ -1,6 +1,7 @@
 (ns ad-fontes.core
   (:require
    [clojure.string :as s]
+   [cognitect.transit :as t]
    [reagent.core :as reagent]
    [re-frame.core :as re-frame]
    [secretary.core :as secretary :refer-macros [defroute]]
@@ -28,7 +29,9 @@
     (.then promise (fn [res]
                      (let [promise2 (.text res)]
                        (.then promise2 (fn [text]
-                                         (re-frame/dispatch [:update-text text]))))))))
+                                         (let [reader (t/reader :json)
+                                               decoded-text (t/read reader text)]
+                                           (re-frame/dispatch [:update-text decoded-text])))))))))
 
 (defn update-chapter
   [chapter]

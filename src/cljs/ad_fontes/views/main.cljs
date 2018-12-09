@@ -1,8 +1,7 @@
 (ns ad-fontes.views.main
   (:require
    [clojure.string :as s]
-   [re-frame.core :as re-frame]
-   [cognitect.transit :as t]))
+   [re-frame.core :as re-frame]))
 
 (defn text-panel
   [verses]
@@ -32,10 +31,8 @@
 (defn main-panel
   []
   (fn []
-    (let [reader (t/reader :json)
-          text (re-frame/subscribe [:text])
-          verses (t/read reader @text)
-          verses (into (sorted-map) verses)
+    (let [text (re-frame/subscribe [:text])
+          verses (into (sorted-map) @text)
           book (re-frame/subscribe [:book])
           chapter (re-frame/subscribe [:chapter])]
       [:div

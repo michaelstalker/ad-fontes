@@ -12,7 +12,12 @@
   (let [out (ByteArrayOutputStream. 4096)
         writer (t/writer out :json)
         words (sql/query (:database-url env)
-                         ["SELECT verses.word, verses.id, verses.verse
+                         ["SELECT verses.word,
+                                  verses.id,
+                                  verses.verse,
+                                  verses.word_case,
+                                  verses.number_form,
+                                  verses.gender
                            FROM verses
                            INNER JOIN books
                            ON verses.book_id = books.id
@@ -21,5 +26,5 @@
                            ORDER BY verses.id"
                           book
                           (Integer. chapter)])]
-    (t/write writer  (group-by :verse words))
+    (t/write writer (group-by :verse words))
     (.toString out)))
